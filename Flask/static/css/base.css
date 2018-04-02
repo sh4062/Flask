@@ -1,0 +1,58 @@
+.logo{
+    width: 100px;
+    height: 100px;
+}
+.my-navbar{
+    height: 100px;
+    position: relative;
+    
+    
+}
+.my-navbar> li > a {
+    height: 100px;
+          display:table-cell;
+             vertical-align:middle;
+             text-align:center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+      
+          
+      }
+
+.my-navbar .myform{
+    
+    
+    line-height : 70px;
+    display: inline-block;
+    vertical-align: middle;
+   
+    
+}
+
+.myform .myform-group {
+
+    line-height : 70px;
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    line-height: 2;
+    height: 40px;
+}
+.myform  .myform-control {
+    height: 40px;
+}
+
+.mybtn{
+    vertical-align: middle;
+    line-height: 2;
+}
+
+body{
+    background: #f3f3f3;
+}
+.main{
+    background: #fff;
+    width: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
