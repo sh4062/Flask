@@ -1,5 +1,5 @@
 .logo{
-    width: 100px;
+    width: 100px!important;
     height: 100px;
 }
 .my-navbar{
@@ -15,7 +15,7 @@
              text-align:center;
         padding-top: 20px;
         padding-bottom: 20px;
-      
+        width: 100px;
           
       }
 
@@ -54,5 +54,5 @@ body{
     background: #fff;
     width: auto;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }

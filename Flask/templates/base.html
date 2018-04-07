@@ -60,7 +60,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-left" href="#">
+                <a class="navbar-left" href="{{url_for('index')}}">
                     <img class="logo" src="{{url_for('static',filename = 'image/logo2.jpg')}}">
                 </a>
             </div>
@@ -69,12 +69,12 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav my-navbar">
                     <li class="active">
-                        <a href="#">HomePage
+                        <a href="{{url_for('index')}}">HomePage
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">Post
+                    <li >
+                        <a href="{{url_for('post')}}">Post
 
                         </a>
                     </li>
@@ -104,12 +104,19 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right my-navbar">
-                    <li>
+                    <!-- <li>
                         <a href="{{url_for('login')}}">Sign In</a>
                     </li>
                     <li>
                         <a href="{{url_for('regist')}}">Sign Up</a>
-                    </li>
+                    </li> -->
+                    {% if login_user %}
+    <li><a href="#">{{ login_user }}</a></li>
+    <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+{% else %}
+    <li><a href="{{ url_for('login') }}">Sign In</a></li>
+    <li><a href="{{ url_for('regist') }}">Sign Up</a></li>
+{% endif %}
 
                 </ul>
                 <div class="nav navbar-nav navbar-right my-navbar">
@@ -131,7 +138,7 @@
         {% block main%}{% endblock%}
     </div>
 
-    
+
     <!-- <section class="main-section paddind" id="download">
         <div class="container">
             <h2 style="color:white">Download</h2>

@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for,session
 import config
-from models import User
+from models import User,Blog
 from exts import db
 import re  
 app = Flask(__name__)
@@ -10,7 +10,7 @@ db.init_app(app)
 @app.route('/')
 def index():
     return render_template('index.html')
-
+#登录
 @app.route('/login/',methods=['GET','POST'])
 def login():
     if request.method == 'GET':
@@ -22,13 +22,14 @@ def login():
         user = User.query.filter(User.email == email,User.password==password).first()
         if user:
             session['user_id'] = user.id
+            session['user_name'] = user.username
             #如果３１天都不需要登录
             session.permanent = True
             return redirect(url_for('index'))
         else:
             return 'Wrong Information'
 
-
+#注册
 @app.route('/regist/',methods=['GET','POST'])
 def regist():
     if request.method == 'GET':
@@ -52,7 +53,35 @@ def regist():
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for('login'))
+#上下文管理器
+@app.context_processor
+def my_context_processor():
+    user = session.get('user_name')
+    if user:
+        return {'login_user': user}
+    return {}
 
+#注销
+@app.route('/logout/')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+#发布
+@app.route('/post/',methods=['GET','POST'])
+def post():
+    if request.method == 'GET':
+        return render_template('post.html')
+    else:
+        title = request.form.get('title')
+        content = request.form.get('content')
+        blog = Blog(title = title,content = content)
+        user_id = session.get('user_id')
+        user = User.query.filter(User.id == user_id).first()
+        blog.author = user
+        db.session.add(blog)
+        db.session.commit()
+        return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
