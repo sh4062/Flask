@@ -1,8 +1,8 @@
 {%extends 'base.html'%} {%block title%}Post Blog{%endblock%} {%block head%}
 <link rel="stylesheet" href="{{url_for('static',filename = 'css/post.css')}}" />{% endblock %} {%block main%}
-
+<div class="container mycontainer">
 <form action=" " method="POST">
-    <div class="container">
+    
         <h3 class="page-title">Post a new blog</h3>
         <div class="form-container myformc">
             <div class="form-group">
@@ -15,7 +15,8 @@
                 <button class="btn btn-primary">Submit</button>
             </div>
         </div>
-    </div>
+    
 </form>
+</div>
 
 {% endblock %}

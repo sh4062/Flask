@@ -1,0 +1,26 @@
+{%extends 'base.html'%} {%block title%}Homepage{%endblock%} {%block head%}
+<link rel="stylesheet" href="{{url_for('static',filename = 'css/view.css')}}" />{% endblock %} {%block main%}
+<div class="container mycontainer">
+    <ul>
+        {%for blog in blogs%}
+        <li>
+            <div class="avatar-group">
+                <img src="{{url_for('static',filename='image/foot.jpg')}}" alt="" class="avatar">
+            </div>
+            <div class="blog-group">
+                <p class="blog-title">
+                    <a href="#">{{blog.title}}</a>
+                </p>
+                <p class="blog-content">{{blog.content}}</p>
+                <div class="blog-info">
+                    <span class="blog-author">{{blog.author.username}}</span>
+                    <span class="blog-time">{{blog.create_time}}</span>
+                </div>
+            </div>
+
+        </li>
+        {%endfor%}
+    </ul>
+</div>
+
+{% endblock %}

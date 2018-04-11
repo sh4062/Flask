@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request,redirect,url_for,session
+from flask import Flask,render_template,request,redirect,url_for,session,flash
 import config
 from models import User,Blog
 from exts import db
@@ -21,10 +21,12 @@ def login():
         #email verfy
         user = User.query.filter(User.email == email,User.password==password).first()
         if user:
+            flash('Logged in successfully.')
             session['user_id'] = user.id
             session['user_name'] = user.username
             #如果３１天都不需要登录
             session.permanent = True
+            
             return redirect(url_for('index'))
         else:
             return 'Wrong Information'
@@ -70,6 +72,9 @@ def logout():
 #发布
 @app.route('/post/',methods=['GET','POST'])
 def post():
+    user = session.get('user_name')
+    if not user:
+        return redirect(url_for('login'))
     if request.method == 'GET':
         return render_template('post.html')
     else:
@@ -82,6 +87,13 @@ def post():
         db.session.add(blog)
         db.session.commit()
         return redirect(url_for('index'))
+
+#观看
+@app.route('/view/',methods=['GET','POST'])
+def view():
+    context = {'blogs' : Blog.query.all()}
+    if request.method == 'GET':
+        return render_template('view.html',**context)
 
 
 if __name__ == '__main__':

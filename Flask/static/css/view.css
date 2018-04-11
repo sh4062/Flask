@@ -1,0 +1,52 @@
+
+.mycontainer{
+    margin-top: 20px;
+    width: 660px;
+    
+    
+}
+
+.mycontainer ul{
+    list-style: none;
+}
+
+.mycontainer ul li{
+    height: 100%;
+    border-bottom: 1px solid rgb(7, 6, 6);
+    padding: 16px 0;
+    overflow:auto;
+}
+
+
+.avatar-group{
+    width: 75px;
+    height: 100%;
+}
+
+.avatar-group .avatar{
+    width: auto;
+    height: auto;
+    
+    float: left;
+
+}
+
+.blog-group{
+    float: left;
+    width:660px;
+    margin-left: 10px;
+}
+
+.blog-title a{
+    color:#259;
+    font-size: 35px;
+}
+.blog-content{
+    color:rgb(7, 14, 14);
+    font-size: 25px;
+    word-wrap:break-word;
+}
+
+.blog-info{
+    text-align: right;
+}
